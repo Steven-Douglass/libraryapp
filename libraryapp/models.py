@@ -13,12 +13,16 @@ class Address(models.Model):
     zip_code = models.CharField(max_length=5)
     def __str__(self):
         return self.address_line_1 + " " + self.city + " " + self.state + " " + self.zip_code
+    class Meta:
+        verbose_name_plural = "Addresses"
 
 class Library(models.Model):
     name = models.CharField(max_length=100)
     address = models.ForeignKey(Address, on_delete=models.CASCADE)
     def __str__(self):
         return self.name
+    class Meta:
+        verbose_name_plural = "Libraries"
 
 class Member(models.Model):
     last_name = models.CharField(max_length=30)
