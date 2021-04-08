@@ -5,7 +5,8 @@ from .models import Book, Author, Member, Library
 
 def index(request):
     book_list = Book.objects.order_by('id')
-    context = { 'book_list': book_list }
+    author_list = Author.objects.order_by('last_name')
+    context = { 'book_list': book_list, 'author_list': author_list }
     return render(request, 'libraryapp/index.html', context)
 
 def author_detail(request, author_id):
@@ -23,3 +24,4 @@ def library_detail(request, library_id):
 def member_detail(request, member_id):
     member = get_object_or_404(Member, pk=member_id)
     return render(request, 'libraryapp/memberdetail.html', {'member': member})
+

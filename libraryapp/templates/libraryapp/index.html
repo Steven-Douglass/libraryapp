@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'libraryapp/style.css' %}">
     <Title>Library Application</Title>
 </head>
 <body>
 
     {% if book_list %}
+        <h1>Books</h1>
         <ul>
             {% for book in book_list %}
-                <li><a href="/library/book/{{ book.id }}/">{{ book.title }}</a></li>
+               <li><a href="{% url 'libraryapp:book_detail' book.id %}">{{ book.title }}</a></li>
             {% endfor %}
         </ul>
-    {% else %}
-        <p>No polls are available.</p>
     {% endif %}
-
+    {% if author_list %}
+        <h1>Authors</h1>
+        <ul>
+            {% for author in author_list %}
+            <li><a href="{% url 'libraryapp:author_detail' author.id %}">{{ author.first_name }} {{author.last_name}}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 </body>
 
 
